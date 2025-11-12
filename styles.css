@@ -1,7 +1,6 @@
 body {
     height: 100vh;
     
-
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -9,10 +8,11 @@ body {
     
     min-width: 640px;
 
+    overflow: hidden;
 }
 
 
-.container {
+.squares-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
