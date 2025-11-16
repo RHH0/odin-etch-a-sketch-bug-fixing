@@ -1,9 +1,14 @@
 let btn = document.querySelector("button");
+let squaresContainer = document.querySelector(".squares-container");
 
 
 btn.addEventListener("click", (e) => {
-    if (document.querySelector(".squares-container")) {
-        document.querySelector(".squares-container").remove();
+    if (document.querySelector(".square")) {
+        const squares = document.querySelectorAll(".square")
+        squares.forEach((square) => {
+            square.remove();
+        });
+        
         requestToGenerateGrid();
     } else {
         requestToGenerateGrid();
@@ -14,7 +19,7 @@ btn.addEventListener("click", (e) => {
 
 function requestToGenerateGrid() {
     let requestedSize = prompt("Grid size?");
-        while (requestedSize < 2 || requestedSize > 100) {
+        while (requestedSize < 2 || requestedSize > 100 || isNaN(requestedSize)) {
             requestedSize = prompt("Grid size?");
         }
         generateGrid(requestedSize);
@@ -23,9 +28,6 @@ function requestToGenerateGrid() {
 
 function generateGrid(squaresPerSide) {
     let totalSquares = squaresPerSide ** 2;
-    let squaresContainer = document.createElement("div");
-    squaresContainer.className = "squares-container";
-    document.body.appendChild(squaresContainer);
     
     for (i = 1; i <= totalSquares; i++) {
         let square = document.createElement("div");
@@ -41,9 +43,7 @@ function generateGrid(squaresPerSide) {
             square.style.backgroundColor = "yellow";
         });
 
-        square.addEventListener('mouseleave', (e) => {
-            square.style.backgroundColor = "blue";
-        });
+        
     };
 }
 
