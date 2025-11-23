@@ -1,10 +1,11 @@
 let btn = document.querySelector("button");
 let squaresContainer = document.querySelector(".squares-container");
+const body = document.querySelector("body");
+let isKeyPressed = false;
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
-
 
 btn.addEventListener("click", (e) => {
     if (document.querySelector(".square")) {
@@ -14,11 +15,20 @@ btn.addEventListener("click", (e) => {
         });
         
         requestToGenerateGrid();
-    } else {
+    } 
+    else {
         requestToGenerateGrid();
     };
     
 });
+
+body.addEventListener("mousedown" , (e) =>{
+    isKeyPressed = true;
+})
+
+body.addEventListener("mouseup" , (e) =>{
+    isKeyPressed = false;
+})
 
 
 function requestToGenerateGrid() {
@@ -47,13 +57,9 @@ function generateGrid(squaresPerSide) {
         let greenValue = getRandomInt(255);
         let blueValue = getRandomInt(255);
         square.addEventListener('mouseenter', (e) => {
-            square.style.backgroundColor = `rgb(${redValue}, ${greenValue}, ${blueValue})`;
+            if(isKeyPressed){
+                square.style.backgroundColor = `rgb(${redValue}, ${greenValue}, ${blueValue})`;
+            }            
         });
     };
 }
-
-
-
-
-
-
